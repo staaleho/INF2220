@@ -14,14 +14,16 @@ public class Main{
         while(s.hasNextLine()){
 
             Node newnode = new Node(s.nextLine());
-
             root.sortNode(newnode);
-
         }
         System.out.println("Done making initial tree");
-        root.findValue("busybody");
-        root.deleteNode("busybody");
-        root.findValue("busybody");
+        System.out.println(root.findValue("busybody", root));
+        root.remove("busybody", root);
+        System.out.println(root.findValue("busybody", root));
+        Node busybodynode = new Node("busybody");
+        root.sortNode(busybodynode);
+        System.out.println(root.findValue("busybody", root));
 
     }
+
 }

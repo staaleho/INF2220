@@ -42,59 +42,19 @@ public class Node {
     }
 
 
-    public void deleteNode(String s){
-        if(this.left.getValue().equals(s)){
-            System.out.println("Found it!");
-            Node leftfromdeleted = this.left.getLeft();
-            Node minimumright = this.left.findMinimumRight();
-            this.left = minimumright;
-            minimumright.setLeft(leftfromdeleted);
-            System.out.println(this.left.getValue());
-        }else if (this.right.getValue().equals(s)){
-            System.out.println("Found it!");
-            Node leftfromdeleted = this.right.getLeft();
-            Node minimumright = this.right.findMinimumRight();
-            this.right = minimumright;
-            minimumright.setLeft(leftfromdeleted);
-            System.out.println(this.right.getValue());
-        }else if(this.value.compareTo(s) < 0){
-            left.deleteNode(s);
-        }else if(this.value.compareTo(s) > 0) {
-            right.deleteNode(s);
+    public boolean findValue(String s, Node n){
+        if(n == null){
+            return false;
         }
+        int compare = s.compareTo(n.getValue());
 
-    }
-
-    public Node findMinimumRight(){
-        if(this.left == null){
-            return this;
+        if(compare > 0){
+            return findValue(s, n.left);
+        }else if(compare < 0){
+            return findValue(s, n.right);
         }else{
-            this.right.findMinimumRight();
+            return true;
         }
-        return this;
-    }
-
-    public void findValues(){
-        System.out.println(value);
-        if(this.left != null){
-            left.findValues();
-        }
-    }
-
-    public Node findValue(String s){
-        if(this.value.equals(s)){
-            System.out.println("Found node with " + this.value);
-            return this;
-        }else if((this.value.compareTo(s)) < 0){
-            this.left.findValue(s);
-        }else if((this.value.compareTo(s)) > 0){
-            this.right.findValue(s);
-        }else{
-            System.out.println("Not found.");
-            return null;
-        }
-        return null;
-
     }
 
     public Node getLeft() {
@@ -104,4 +64,72 @@ public class Node {
     public Node getRight() {
         return right;
     }
+
+    public Node findMinimumValue(Node n){
+        if(n == null){
+            return null;
+        }else if(n.left == null){
+            return n;
+        }
+        return findMinimumValue(n.left);
+    }
+
+    public Node findMaximumValue(Node n){
+        if(n == null){
+            return null;
+        }else if(n.right == null){
+            return n;
+        }
+        return findMaximumValue(n.right);
+    }
+
+
+    public Node findNode(String s, Node n){
+        if(n == null){
+            return n;
+        }
+        int compare = s.compareTo(n.getValue());
+
+        if(compare > 0){
+            return findNode(s, n.left);
+        }else if(compare < 0){
+            return findNode(s, n.right);
+        }else{
+            return n;
+        }
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public Node remove(String s, Node n){
+        if(n == null){
+            return n;
+        }
+        int compareresult = s.compareTo(n.value);
+
+        if(compareresult > 0){
+            n.left = remove(s, n.left);
+        }else if(compareresult < 0){
+            n.right = remove(s, n.left);
+        }else if (n.left != null && n.right != null){
+            Node minimumvalue = findMinimumValue(n.right);
+            n.setValue(minimumvalue.getValue());
+            remove(minimumvalue.getValue(), n.right);
+        }
+        else if(n.left != null){
+            Node delete = n;
+            n = n.left;
+            delete = null;
+        }
+        else if(n.right != null){
+            Node delete = n;
+            n = n.right;
+            delete = null;
+        }
+        return n;
+    }
+
 }
+
