@@ -99,6 +99,9 @@ public class Node {
         }
     }
 
+
+
+
     public void setValue(String value) {
         this.value = value;
     }
@@ -129,6 +132,29 @@ public class Node {
             delete = null;
         }
         return n;
+    }
+
+    public boolean switchLetters(String s, Node n){
+        if(s.length() < 2){
+            return false;
+        }
+
+        char[] chararray = s.toCharArray();
+        for (int i = 0; i < chararray.length -1; i++) {
+            char c1 = chararray[i];
+            char c2 = chararray[i+1];
+            chararray[i] = c2;
+            chararray[i+1] = c1;
+            String teststring = new String(chararray);
+            System.out.println("Trying " + teststring);
+            if(n.findValue(teststring,n)){
+                System.out.println("Found word " + teststring);
+                return true;
+            }
+            chararray = s.toCharArray();
+
+        }
+        return false;
     }
 
 }
