@@ -15,14 +15,6 @@ public class Node {
         return value;
     }
 
-    public void setLeft(Node left) {
-        this.left = left;
-    }
-
-    public void setRight(Node right) {
-        this.right = right;
-    }
-
     public void sortNode(Node node) {
         if (this.value.compareTo(node.getValue()) == 0) {
             frequency++;
@@ -41,7 +33,6 @@ public class Node {
         }
     }
 
-
     public boolean findValue(String s, Node n){
         if(n == null){
             return false;
@@ -55,14 +46,6 @@ public class Node {
         }else{
             return true;
         }
-    }
-
-    public Node getLeft() {
-        return left;
-    }
-
-    public Node getRight() {
-        return right;
     }
 
     public Node findMinimumValue(Node n){
@@ -83,79 +66,43 @@ public class Node {
         return findMaximumValue(n.right);
     }
 
-
-    public Node findNode(String s, Node n){
-        if(n == null){
-            return n;
+    public Node deleteNode(Node root, String s) {
+        if (root == null){
+            return null;
         }
-        int compare = s.compareTo(n.getValue());
+        int compareint = s.compareTo(root.value);
 
-        if(compare > 0){
-            return findNode(s, n.left);
-        }else if(compare < 0){
-            return findNode(s, n.right);
-        }else{
-            return n;
-        }
-    }
+        if (compareint > 0) {
+            root.left = deleteNode(root.left, s);
+        } else if (compareint < 0) {
+            root.right = deleteNode(root.right, s);
+        } else {
 
+            if (root.left != null && root.right != null) {
+                Node temp = root;
 
+                Node minNodeForRight = root.findMinimumValue(root.right);
 
+                root.value = minNodeForRight.getValue();
 
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public Node remove(String s, Node n){
-        if(n == null){
-            return n;
-        }
-        int compareresult = s.compareTo(n.value);
-
-        if(compareresult > 0){
-            n.left = remove(s, n.left);
-        }else if(compareresult < 0){
-            n.right = remove(s, n.left);
-        }else if (n.left != null && n.right != null){
-            Node minimumvalue = findMinimumValue(n.right);
-            n.setValue(minimumvalue.getValue());
-            remove(minimumvalue.getValue(), n.right);
-        }
-        else if(n.left != null){
-            Node delete = n;
-            n = n.left;
-            delete = null;
-        }
-        else if(n.right != null){
-            Node delete = n;
-            n = n.right;
-            delete = null;
-        }
-        return n;
-    }
-
-    public boolean switchLetters(String s, Node n){
-        if(s.length() < 2){
-            return false;
-        }
-
-        char[] chararray = s.toCharArray();
-        for (int i = 0; i < chararray.length -1; i++) {
-            char c1 = chararray[i];
-            char c2 = chararray[i+1];
-            chararray[i] = c2;
-            chararray[i+1] = c1;
-            String teststring = new String(chararray);
-            System.out.println("Trying " + teststring);
-            if(n.findValue(teststring,n)){
-                System.out.println("Found word " + teststring);
-                return true;
+                deleteNode(root.right, minNodeForRight.value);
             }
-            chararray = s.toCharArray();
 
+            else if (root.left != null) {
+                root = root.left;
+            }
+
+            else if (root.right != null) {
+                root = root.right;
+            }
+
+            else
+                root = null;
         }
-        return false;
+        return root;
     }
+
+
 
 }
 

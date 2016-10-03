@@ -23,15 +23,15 @@ public class Tree {
         }else if(n.left == null && n.right == null) {
             return 1;
         }else{
-                int ldepth = getDepth(n.left);
-                int rdepth = getDepth(n.right);
-                if(ldepth > rdepth){
-                    return ldepth+1;
-                }else{
-                    return rdepth+1;
-                }
+            int ldepth = getDepth(n.left);
+            int rdepth = getDepth(n.right);
+            if(ldepth > rdepth){
+                return ldepth+1;
+            }else{
+                return rdepth+1;
             }
         }
+    }
     //Counts nodes at a given level.
     public int nodesAtLevel(Node n, int level, int wantedlevel){
         if(n == null){
@@ -213,6 +213,19 @@ public class Tree {
         treestats.add(" and the last is " + root.findMinimumValue(root).getValue() + ".");
 
         return treestats;
+    }
+
+    public boolean search (String s){
+        return root.findValue(s, root);
+    }
+
+    public Node remove (String s){
+        return root.deleteNode(root, s);
+    }
+
+    public void insert (String s){
+        Node newnode = new Node(s);
+        root.sortNode(newnode);
     }
 
 

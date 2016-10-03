@@ -28,8 +28,7 @@ public class Main{
         //Reads the file, creates nodes, and sorts them.
 
         while(s.hasNextLine()){
-            Node newnode = new Node(s.nextLine());
-            root.sortNode(newnode);
+            tree.insert(s.nextLine());
         }
         long total = tree.getTotal();
         treestatistics = tree.treeStatistics();
@@ -43,11 +42,16 @@ public class Main{
         fw.write(System.getProperty("line.separator"));
 
         //Initiates spellcheck.
+
+        System.out.println(tree.search("busybody"));
+        tree.remove("busybody");
+        System.out.println(tree.search("busybody"));
+
         System.out.println("Welcome to spellcheck! Enter word: ('q' to exit)");
         Scanner in = new Scanner(System.in);
         String input = in.nextLine();
         while(!input.equals("q")) {
-            if (!root.findValue(input, root)) {
+            if (!tree.search(input)) {
                 results = tree.spellCheck(input);
                 for (String rstring: results) {
                     fw.write(rstring);
