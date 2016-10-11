@@ -7,10 +7,10 @@ import java.util.Set;
  * Created by staleh on 18.09.2016.
  */
 public class Tree {
-    Node root = null;
-    long total = 0;
-    List<String> inputarraylist = new ArrayList<String>();
-    ArrayList<String> results = new ArrayList<String>();
+    private Node root = null;
+    private long total = 0;
+    private List<String> inputarraylist = new ArrayList<String>();
+    private ArrayList<String> results = new ArrayList<String>();
 
 
     public Tree(Node root) {
@@ -67,7 +67,6 @@ public class Tree {
 
         return averagedepthdouble/getTotal();
     }
-
 
     public long getTotal() {
         return total;
@@ -201,6 +200,7 @@ public class Tree {
     }
     //Generates statistics for the tree.
     public ArrayList<String> treeStatistics (){
+        total = 0;
         ArrayList<String> treestats = new ArrayList<String>();
 
         treestats.add("Statistics for the current tree:");
@@ -209,8 +209,9 @@ public class Tree {
         treestats.addAll(nodesPerLevel());
         treestats.add("3: The average depth of a BST is O(log(n)), in this tree that is " + Math.log(getTotal()) / Math.log(2) + ".");
         treestats.add("This BST in particular has an average node depth of " + getAverageDepth(root) + ".");
-        treestats.add("4: The first word is " + root.findMaximumValue(root).getValue() + ",");
-        treestats.add(" and the last is " + root.findMinimumValue(root).getValue() + ".");
+        treestats.add("4: The first word is " + root.findMinimumValue(root).getValue() + ",");
+        treestats.add(" and the last is " + root.findMaximumValue(root).getValue() + ".");
+        treestats.add("This adds up to " + total + " nodes.");
 
         return treestats;
     }
@@ -219,14 +220,14 @@ public class Tree {
         return root.findValue(s, root);
     }
 
+
     public Node remove (String s){
-        return root.deleteNode(root, s);
+        return root.remove(s, root);
     }
 
     public void insert (String s){
         Node newnode = new Node(s);
         root.sortNode(newnode);
+        total++;
     }
-
-
 }

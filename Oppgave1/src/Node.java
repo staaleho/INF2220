@@ -18,13 +18,13 @@ public class Node {
     public void sortNode(Node node) {
         if (this.value.compareTo(node.getValue()) == 0) {
             frequency++;
-        } else if (this.value.compareTo(node.getValue()) < 0) {
+        } else if (this.value.compareTo(node.getValue()) > 0) {
             if (this.left == null) {
                 this.left = node;
             } else {
                 this.left.sortNode(node);
             }
-        } else if (this.value.compareTo(node.getValue()) > 0) {
+        } else if (this.value.compareTo(node.getValue()) < 0) {
             if (this.right == null) {
                 this.right = node;
             } else {
@@ -33,76 +33,83 @@ public class Node {
         }
     }
 
-    public boolean findValue(String s, Node n){
-        if(n == null){
+    public boolean findValue(String s, Node n) {
+        if (n == null) {
             return false;
         }
         int compare = s.compareTo(n.getValue());
 
-        if(compare > 0){
+        if (compare < 0) {
             return findValue(s, n.left);
-        }else if(compare < 0){
+        } else if (compare > 0) {
             return findValue(s, n.right);
-        }else{
+        } else {
             return true;
         }
     }
 
-    public Node findMinimumValue(Node n){
-        if(n == null){
+    public Node findMinimumValue(Node n) {
+        if (n == null) {
             return null;
-        }else if(n.left == null){
+        } else if (n.left == null) {
             return n;
         }
         return findMinimumValue(n.left);
     }
 
-    public Node findMaximumValue(Node n){
-        if(n == null){
+    public Node findMaximumValue(Node n) {
+        if (n == null) {
             return null;
-        }else if(n.right == null){
+        } else if (n.right == null) {
             return n;
         }
         return findMaximumValue(n.right);
     }
 
-    public Node deleteNode(Node root, String s) {
-        if (root == null){
+    public Node getLeft() {
+        return left;
+    }
+
+    public Node getRight() {
+        return right;
+    }
+
+    public Node remove(String s, Node n) {
+        if (n == null) {
+            //Nothing happens
             return null;
         }
-        int compareint = s.compareTo(root.value);
-
-        if (compareint > 0) {
-            root.left = deleteNode(root.left, s);
-        } else if (compareint < 0) {
-            root.right = deleteNode(root.right, s);
+        if (n.getValue().compareTo(s) < 0) {
+            n.setRight(remove(s, n.getRight()));
+        } else if (n.getValue().compareTo(s) > 0) {
+            n.setLeft(remove(s, n.getLeft()));
+        } else if (n.getLeft() != null && n.getRight() != null) {
+            n.setValue(findMinimumValue(n.getRight()).getValue());
+            n.setRight(remove(n.getValue(), n.getRight()));
         } else {
-
-            if (root.left != null && root.right != null) {
-                Node temp = root;
-
-                Node minNodeForRight = root.findMinimumValue(root.right);
-
-                root.value = minNodeForRight.getValue();
-
-                deleteNode(root.right, minNodeForRight.value);
+            if (n.getLeft() != null)
+                n = n.getLeft();
+            else if (n.getRight() != null){
+                n = n.getRight();
+            }else{
+                n = null;
             }
-
-            else if (root.left != null) {
-                root = root.left;
-            }
-
-            else if (root.right != null) {
-                root = root.right;
-            }
-
-            else
-                root = null;
         }
-        return root;
+        return n;
     }
 
 
+    public void setLeft(Node left) {
+        this.left = left;
+    }
+
+    public void setRight(Node right) {
+        this.right = right;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
 
 }
 

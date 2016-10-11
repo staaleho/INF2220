@@ -41,11 +41,47 @@ public class Main{
         }
         fw.write(System.getProperty("line.separator"));
 
-        //Initiates spellcheck.
+        System.out.println("Before we begin, lets look at the tree!");
 
-        System.out.println(tree.search("busybody"));
+        for (String exitstring : treestatistics) {
+            System.out.println(exitstring);
+        }
+
+        System.out.println("Looking for busybody...");
+        if (tree.search("busybody")){
+            System.out.println("Busybody found!");
+        }else{
+            System.out.println("Busybody not found!");
+        }
+
+        System.out.println("Deleting busybody");
+
         tree.remove("busybody");
-        System.out.println(tree.search("busybody"));
+        System.out.println("Looking for busybody...");
+        if (tree.search("busybody")){
+            System.out.println("Busybody found!");
+        }else{
+            System.out.println("Busybody not found!");
+        }
+
+        System.out.println("Lets delete a leaf node, like abactinally");
+
+        tree.remove("abactinally");
+
+        System.out.println("Looking for abactinally...");
+        if (tree.search("abactinally")){
+            System.out.println("Abactinally found!");
+        }else{
+            System.out.println("Abactinally not found!");
+        }
+
+
+        System.out.println("Lets hope the tree is still working!");
+        treestatistics = tree.treeStatistics();
+
+        for (String exitstring : treestatistics) {
+            System.out.println(exitstring);
+        }
 
         System.out.println("Welcome to spellcheck! Enter word: ('q' to exit)");
         Scanner in = new Scanner(System.in);
@@ -71,8 +107,5 @@ public class Main{
             results.clear();
         }
 
-        for (String exitstring : treestatistics) {
-            System.out.println(exitstring);
-        }
     }
 }
