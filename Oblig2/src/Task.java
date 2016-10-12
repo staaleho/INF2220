@@ -6,7 +6,7 @@ import java.util.ArrayList;
 class Task {
     int id , time , staff ;
     String name ;
-    int earliestStart , latestStart ;
+    int earliestStart , latestStart;
     ArrayList < Task > outEdges = new ArrayList<Task>();
     int cntPredecessors = 0;
     int[] earliertasks;
@@ -91,20 +91,41 @@ class Task {
         taskstate = State.RUNNING;
     }
 
+    public int getEarliestStart() {
+        return earliestStart;
+    }
+
     public void setFinished(){
         taskstate = State.SEEN;
     }
 
-    public void completeTask() {
+    public int getTime() {
+        return time;
+    }
+
+    public void setEarliestStart(int earliestStart) {
+        if(this.earliestStart < earliestStart){
+            System.out.println(name + " earliest set to " + earliestStart);
+            this.earliestStart = earliestStart;
+        }
+
+    }
+
+    public void completeTask(int i) {
+
+        this.earliestStart = i;
 
         if (cntPredecessors == 0) {
             System.out.println("Starting " + this.name);
             this.taskstate = State.SEEN;
+            thisproject.addStaffAtTime(earliestStart, staff, time);
+
+            System.out.println("Completed in " + (earliestStart + this.time) + " time.");
+            System.out.println("- - -");
         for (Task t : outEdges) {
             t.removePredecessor();
             if (t.getCntPredecessors() == 0 && t.taskstate.equals(State.UNSEEN)) {
-                System.out.println("I can start " + t.getName());
-                t.completeTask();
+                t.completeTask(earliestStart + time);
             }
         }
     }else{

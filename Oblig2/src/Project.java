@@ -11,8 +11,12 @@ public class Project {
     private int taskcounter = 0;
     private Boolean[] taskCompleted;
     private int runningtime = 0;
+    private ArrayList<Integer> staffAtTime = new ArrayList<Integer>();
 
     public Project() {
+        for (int i = 0; i < 100; i++) {
+            staffAtTime.add(0); //Populating the arraylist with zero to avoid indexoutofbounds
+        }
     }
 
     public void newProjectFromFile(File filename) throws FileNotFoundException {
@@ -66,9 +70,16 @@ public class Project {
 
     public void listTasks(){
         System.out.println("This project consists of these tasks:");
+
         for (Task t : tasks) {
-            System.out.println(t.getName());
-            System.out.println(t.getEarliertasks().length);
+            System.out.println("The task is " + t.getName());
+            System.out.println("It is necessary for");
+            for(Task t2 : t.getOutEdges()){
+                System.out.println(t2.getName());
+            }
+            System.out.println("- - -");
+            //System.out.println(t.getEarliertasks().length);
+            //System.out.println("Can be finished at time " + t.getEarliestStart());
         }
     }
 
@@ -114,12 +125,13 @@ public class Project {
     }
 
     public void findQuickestCompletion(){
+
         for (Task t: tasks) {
             t.taskstate = State.UNSEEN; //Resets all tasks after searching for a cycle
         }
 
         Task t = findFirstTask();
-        t.completeTask();
+        t.completeTask(0);
 
     }
 
@@ -134,6 +146,42 @@ public class Project {
                 System.out.println(t2.getName());
             }
             System.out.println("- - -");
+        }
+    }
+
+    public void taskOutput(){
+        for (int i = 0; i < 30; i++) {
+            for(Task t : tasks){
+                if (t.getEarliestStart() == i){
+                    System.out.println(t.getName());
+                }
+            }
+        }
+
+    }
+
+    public void addStaffAtTime(int index, int staff, int duration){
+
+        for (int i = 0; i < duration; i++) {
+            staffAtTime.add((i+index), (staffAtTime.get(i + index) + staff));
+
+        }
+    }
+
+    public void removeStaffAtTime(int index, int staff, int duration){
+        int staffAfterRemoval = staffAtTime.get(index);
+        staffAfterRemoval -= staff;
+        staffAtTime.set(index, staffAfterRemoval);
+        System.out.println("Removed " + staffAfterRemoval + " at " + index);
+    }
+
+    public int getStaffAtTime(int index){
+        return staffAtTime.get(index);
+    }
+
+    public void listProjectProgress(){
+        for (Task t : tasks) {
+            System.out.println("At time " + t.getEarliestStart() + ", staff is " + staffAtTime.get(t.getEarliestStart()));
         }
     }
 

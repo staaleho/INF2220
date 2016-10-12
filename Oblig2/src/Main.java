@@ -26,6 +26,9 @@ public class Main {
 
         //t = newproject.findFirstTask();
         //t.runningTimeForTask(0);
+        //newproject.listTasks();
+        //newproject.taskOutput();
+        newproject.listProjectProgress();
 
 
     }
