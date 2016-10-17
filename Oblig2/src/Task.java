@@ -3,15 +3,20 @@ import java.util.ArrayList;
 /**
  * Created by staleh on 28.09.2016.
  */
-class Task {
+class Task implements Comparable<Task>{
     int id , time , staff ;
     String name ;
-    int earliestStart , latestStart;
+    int earliestStart , latestStart = 0; //Needed for slack calculation
     ArrayList < Task > outEdges = new ArrayList<Task>();
+    ArrayList < Task > inEdges = new ArrayList<Task>();
     int cntPredecessors = 0;
     int[] earliertasks;
     Project thisproject;
     State taskstate = State.UNSEEN;
+    int slack;
+    int endsAt = 0;
+    boolean isCritical = false;
+
 
 
     //The constructor accepts a stringarray as parameter, and uses it to fill variables.
@@ -47,31 +52,26 @@ class Task {
         outEdges.add(t);
     }
 
+    public void setInEdge(Task t){
+        inEdges.add(t);
+    }
+
     public ArrayList<Task> getOutEdges() {
         return outEdges;
     }
 
-    public int[] getEarliertasks(){
-        return earliertasks;
+    public void addInEdges(){
+        for(Task t : outEdges){
+            t.setInEdge(this);
+        }
     }
 
-    public int getId() {
-        return id;
+    public int getLatestStart() {
+        return latestStart;
     }
 
     public String getName() {
         return name;
-    }
-
-    public void listNecsTasks(){
-        for (Task t : outEdges) {
-            System.out.println("Task " + name + " needs these to start:");
-            System.out.println(t.getName());
-        }
-    }
-
-    public void addPredecessor(){
-        cntPredecessors++;
     }
 
     public int getCntPredecessors() {
@@ -83,49 +83,33 @@ class Task {
 
     }
 
-    public void setUnseen(){
-        taskstate = State.UNSEEN;
-    }
-
-    public void setRunning(){
-        taskstate = State.RUNNING;
-    }
-
-    public int getEarliestStart() {
-        return earliestStart;
-    }
-
-    public void setFinished(){
-        taskstate = State.SEEN;
-    }
-
-    public int getTime() {
-        return time;
-    }
-
-    public void setEarliestStart(int earliestStart) {
-        if(this.earliestStart < earliestStart){
-            System.out.println(name + " earliest set to " + earliestStart);
+    public void addStartTime(int earliestStart) {
+        if(this.earliestStart == 0){
             this.earliestStart = earliestStart;
+        }else if(this.latestStart == 0){
+            this.latestStart = Math.max(this.earliestStart, earliestStart);
+            this.earliestStart = Math.min(this.earliestStart, earliestStart);
+        }else{
+            this.latestStart = Math.max(this.latestStart, earliestStart);
+            this.earliestStart = Math.min(this.earliestStart, earliestStart);
         }
-
     }
 
     public void completeTask(int i) {
-
-        this.earliestStart = i;
+        if(i > latestStart){
+            latestStart = i;
+        }
 
         if (cntPredecessors == 0) {
-            System.out.println("Starting " + this.name);
             this.taskstate = State.SEEN;
-            thisproject.addStaffAtTime(earliestStart, staff, time);
+            thisproject.addStaffAtTime(latestStart, staff, time);
+            endsAt = latestStart + time;
 
-            System.out.println("Completed in " + (earliestStart + this.time) + " time.");
-            System.out.println("- - -");
         for (Task t : outEdges) {
             t.removePredecessor();
+            t.addStartTime(i + time);
             if (t.getCntPredecessors() == 0 && t.taskstate.equals(State.UNSEEN)) {
-                t.completeTask(earliestStart + time);
+                t.completeTask(latestStart + time);
             }
         }
     }else{
@@ -133,14 +117,48 @@ class Task {
         }
     }
 
-    public void runningTimeForTask(int i){
-        System.out.println(this.name + " complete in " + (i + time) + " time.");
-        for (Task t: outEdges) {
-            if(t.taskstate.equals(State.SEEN)){
-                t.runningTimeForTask(i);
+    public void findSlack(){
+        int subsequentstart = 0;
+        for(Task t : outEdges){
+            if (subsequentstart == 0){
+                subsequentstart = t.getLatestStart();
             }
+                subsequentstart = Math.min(subsequentstart, t.getLatestStart());
+        }
+
+        slack = subsequentstart - (latestStart + time);
+
+        if(slack < 1 ){
+            isCritical = true;
         }
     }
 
+    @Override
+    public int compareTo(Task o) {
+        return this.latestStart - o.getLatestStart();
 
+    }
+
+    public void printAllInfo(){
+        System.out.println("Task ID " + id);
+        System.out.println("Name: " + name);
+        System.out.println("Time to complete " + time);
+        System.out.println("Staff: " + staff);
+        System.out.println("Earliest start " + earliestStart);
+        System.out.println("Latest start " + latestStart);
+        if(isCritical){
+            System.out.println("Task is critical!");
+        }else{
+            System.out.println("Task has slack " + slack + ".");
+        }
+
+        if(outEdges.size() > 0){
+            System.out.println("The project is necessary for these tasks:");
+            for (Task t: outEdges){
+                System.out.println(t.id + " " + t.getName());
+            }
+        }
+
+
+    }
 }

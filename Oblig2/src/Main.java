@@ -19,16 +19,10 @@ public class Main {
 
         Task t = newproject.findFirstTask();
 
-        //t.taskstate = State.SEEN;
-
-        //newproject.findCycle(newproject.findFirstTask());
+        newproject.findCycle(newproject.findFirstTask());
         newproject.findQuickestCompletion();
-
-        //t = newproject.findFirstTask();
-        //t.runningTimeForTask(0);
-        //newproject.listTasks();
-        //newproject.taskOutput();
-        newproject.listProjectProgress();
+        newproject.findSlackForProject();
+        newproject.finalPrintOut();
 
 
     }

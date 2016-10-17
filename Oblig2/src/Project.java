@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -49,6 +50,7 @@ public class Project {
         }
 
         setEarlierTasks();
+        setInEdges();
 
     }
 
@@ -60,7 +62,6 @@ public class Project {
     }
 
     public void setEarlierTasks(){
-        ArrayList < Task > earliertaskslist = new ArrayList<Task>();
         for (Task t : tasks) {
             t.setEdges();
         }
@@ -68,23 +69,10 @@ public class Project {
         return;
     }
 
-    public void listTasks(){
-        System.out.println("This project consists of these tasks:");
-
-        for (Task t : tasks) {
-            System.out.println("The task is " + t.getName());
-            System.out.println("It is necessary for");
-            for(Task t2 : t.getOutEdges()){
-                System.out.println(t2.getName());
-            }
-            System.out.println("- - -");
-            //System.out.println(t.getEarliertasks().length);
-            //System.out.println("Can be finished at time " + t.getEarliestStart());
+    public void setInEdges(){
+        for(Task t : tasks){
+            t.addInEdges();
         }
-    }
-
-    public Task[] getTasks() {
-        return tasks;
     }
 
     public Task findFirstTask(){
@@ -125,7 +113,6 @@ public class Project {
     }
 
     public void findQuickestCompletion(){
-
         for (Task t: tasks) {
             t.taskstate = State.UNSEEN; //Resets all tasks after searching for a cycle
         }
@@ -135,55 +122,50 @@ public class Project {
 
     }
 
-    public void completeGraph(){
-        for (Task t : tasks);
-    }
-
-    public void fullListPred(){
-        for (Task t:  tasks) {
-            System.out.println(t.getName() + " is necessary for these tasks: ");
-            for(Task t2 : t.getOutEdges()){
-                System.out.println(t2.getName());
-            }
-            System.out.println("- - -");
-        }
-    }
-
-    public void taskOutput(){
-        for (int i = 0; i < 30; i++) {
-            for(Task t : tasks){
-                if (t.getEarliestStart() == i){
-                    System.out.println(t.getName());
-                }
-            }
-        }
-
-    }
 
     public void addStaffAtTime(int index, int staff, int duration){
-
         for (int i = 0; i < duration; i++) {
             staffAtTime.add((i+index), (staffAtTime.get(i + index) + staff));
 
         }
     }
 
-    public void removeStaffAtTime(int index, int staff, int duration){
-        int staffAfterRemoval = staffAtTime.get(index);
-        staffAfterRemoval -= staff;
-        staffAtTime.set(index, staffAfterRemoval);
-        System.out.println("Removed " + staffAfterRemoval + " at " + index);
-    }
 
-    public int getStaffAtTime(int index){
-        return staffAtTime.get(index);
-    }
-
-    public void listProjectProgress(){
-        for (Task t : tasks) {
-            System.out.println("At time " + t.getEarliestStart() + ", staff is " + staffAtTime.get(t.getEarliestStart()));
+    public void findSlackForProject(){
+        for (Task t : tasks){
+            t.findSlack();
         }
     }
+
+
+    public void finalPrintOut(){
+        completionPrintOut();
+        taskInfoPrintOut();
+    }
+
+    public void completionPrintOut(){
+
+        Arrays.sort(tasks);
+
+        for(Task t : tasks){
+            System.out.println("Time: " + t.latestStart);
+            System.out.println("Starting " + t.getName());
+            System.out.println("Current staff is " + staffAtTime.get(t.getLatestStart()));
+            System.out.println("Ends at " + t.endsAt);
+            System.out.println("- - -");
+        }
+    }
+
+    public void taskInfoPrintOut(){
+        for(Task t : tasks){
+            t.printAllInfo();
+            System.out.println("- - -");
+        }
+    }
+
+
+
+
 
 
 }
