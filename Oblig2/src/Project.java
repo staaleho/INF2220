@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -11,11 +10,12 @@ public class Project {
     private Task[] tasks;
     private int taskcounter = 0;
     private Boolean[] taskCompleted;
-    private int runningtime = 0;
     private ArrayList<Integer> staffAtTime = new ArrayList<Integer>();
+    private ArrayList<Integer> startAndEndtimes = new ArrayList<Integer>();
+
 
     public Project() {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
             staffAtTime.add(0); //Populating the arraylist with zero to avoid indexoutofbounds
         }
     }
@@ -48,10 +48,8 @@ public class Project {
         for (Boolean b : taskCompleted){
             b = false;
         }
-
         setEarlierTasks();
         setInEdges();
-
     }
 
     public Task getTask(int i){
@@ -65,7 +63,6 @@ public class Project {
         for (Task t : tasks) {
             t.setEdges();
         }
-
         return;
     }
 
@@ -75,30 +72,28 @@ public class Project {
         }
     }
 
-    public Task findFirstTask(){
-        Task starttask = tasks[0];
-
+    public ArrayList<Task> findZeroEdgeTasks(){
+        ArrayList<Task> zeroinedgetasks = new ArrayList<Task>();
         for (Task t3 : tasks){
             if (t3.getCntPredecessors() < 1)
-                starttask = t3;
+                zeroinedgetasks.add(t3);
         }
-        return starttask;
+        return zeroinedgetasks;
     }
 
     public void findCycle(Task t){
-
         switch (t.taskstate){
             case RUNNING:
                 System.out.println("Loop!");
                 findLoopingTasks();
-                break;
+
+                throw new Error();
             case UNSEEN:
                 t.taskstate = State.RUNNING;
                 for (Task t2 : t.getOutEdges())
                     findCycle(t2);
                 t.taskstate = State.SEEN;
         }
-
     }
 
     public void findLoopingTasks(){
@@ -112,24 +107,24 @@ public class Project {
             }
     }
 
-    public void findQuickestCompletion(){
-        for (Task t: tasks) {
+    public void findQuickestCompletion() {
+        for (Task t : tasks) {
             t.taskstate = State.UNSEEN; //Resets all tasks after searching for a cycle
         }
 
-        Task t = findFirstTask();
-        t.completeTask(0);
-
-    }
-
-
-    public void addStaffAtTime(int index, int staff, int duration){
-        for (int i = 0; i < duration; i++) {
-            staffAtTime.add((i+index), (staffAtTime.get(i + index) + staff));
-
+        for (Task t : findZeroEdgeTasks()) {
+            t.completeTask(0);
         }
     }
 
+
+    public void addStaffAtTime(int index, int staff, int time){
+        for (int i = 0; i < time; i++) {
+            int currentstaff = staffAtTime.get(i+index);
+            int totalstaff = (currentstaff + staff);
+            staffAtTime.set(i+index, totalstaff);
+        }
+    }
 
     public void findSlackForProject(){
         for (Task t : tasks){
@@ -137,22 +132,45 @@ public class Project {
         }
     }
 
-
     public void finalPrintOut(){
+
         completionPrintOut();
+        findEarliestCompletion();
         taskInfoPrintOut();
     }
 
+    public void findEarliestCompletion(){
+        int earliestfinish = 0;
+        for (Task t : tasks){
+            earliestfinish = Math.max(earliestfinish, (t.getLatestStart() + t.getTime()));
+        }
+        System.out.println("* * * * *");
+        System.out.println("Earliest possible project completion is " + earliestfinish);
+        System.out.println("* * * * *");
+        System.out.println("-");
+    }
+
     public void completionPrintOut(){
+        boolean printstaff = false;
+        for(int i = 0; i < staffAtTime.size(); i++){
 
-        Arrays.sort(tasks);
-
-        for(Task t : tasks){
-            System.out.println("Time: " + t.latestStart);
-            System.out.println("Starting " + t.getName());
-            System.out.println("Current staff is " + staffAtTime.get(t.getLatestStart()));
-            System.out.println("Ends at " + t.endsAt);
-            System.out.println("- - -");
+            for (Task t : tasks) {
+                if(t.getLatestStart() == i){
+                    System.out.println("Time " + i + ": " + t.getName() + " starts.");
+                    printstaff = true;
+                }
+                if((t.getLatestStart()+t.getTime() == i)){
+                    System.out.println("Time " + i + ": " + t.getName() + " finishes.");
+                    printstaff = true;
+                }
+            }
+            if(printstaff){
+                if(staffAtTime.get(i) != 0){
+                    System.out.println("Current staff: " + staffAtTime.get(i));
+                }
+                System.out.println("-");
+                printstaff = false;
+            }
         }
     }
 
@@ -162,10 +180,4 @@ public class Project {
             System.out.println("- - -");
         }
     }
-
-
-
-
-
-
 }

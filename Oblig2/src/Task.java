@@ -95,6 +95,10 @@ class Task implements Comparable<Task>{
         }
     }
 
+    public int getTime() {
+        return time;
+    }
+
     public void completeTask(int i) {
         if(i > latestStart){
             latestStart = i;
@@ -103,6 +107,7 @@ class Task implements Comparable<Task>{
         if (cntPredecessors == 0) {
             this.taskstate = State.SEEN;
             thisproject.addStaffAtTime(latestStart, staff, time);
+
             endsAt = latestStart + time;
 
         for (Task t : outEdges) {
@@ -146,6 +151,7 @@ class Task implements Comparable<Task>{
         System.out.println("Staff: " + staff);
         System.out.println("Earliest start " + earliestStart);
         System.out.println("Latest start " + latestStart);
+        System.out.println("Task completes at " + (latestStart + time));
         if(isCritical){
             System.out.println("Task is critical!");
         }else{

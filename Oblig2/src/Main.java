@@ -6,24 +6,32 @@ import java.io.FileNotFoundException;
  */
 public class Main {
     public static void main(String[] args){
+        boolean cyclefound = false;
 
 
         Project newproject = new Project(); //Create empty project
 
         try {
-            File file = new File("buildhouse1.txt"); //Create file
+            File file = new File(args[0]); //Create file
             newproject.newProjectFromFile(file); //Populate project with tasks from file
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-        Task t = newproject.findFirstTask();
+        try{
+            for (Task t : newproject.findZeroEdgeTasks()) {
+                newproject.findCycle(t);
+            }
+        }catch (Error e){
+            System.out.println("Cycle found! Terminating program.");
+            cyclefound = true;
+        }
 
-        newproject.findCycle(newproject.findFirstTask());
-        newproject.findQuickestCompletion();
-        newproject.findSlackForProject();
-        newproject.finalPrintOut();
 
-
+        if(!cyclefound){
+            newproject.findQuickestCompletion();
+            newproject.findSlackForProject();
+            newproject.finalPrintOut();
+        }
     }
 }

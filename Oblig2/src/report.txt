@@ -1,0 +1,16 @@
+1: The inital creation of the data structure reads lines in a given text file: therefore, complexity here should be O=(n),
+where n is the number of tasks (lines in the file)
+
+2: Next, I search for a cycle in the data structure. The worst case here is visiting all nodes through all edges,
+only finding at the last node. In other words, a depth-first search, which has a worst case of O = (|N| + |V|).
+
+3: Calculating completion time for the project equally relies on a DFS, which gives us the same value of O = (|N| + |V|).
+
+4: Finding slack is more difficult. We go through all nodes (N) and look at their outedges. The worst case would be one
+node where all other nodes were outedges, which would be O = (|N| + |V|)
+
+5: The print method works by counting up from i = 0, i < staffattime.length, and for each i, look up each task to see if it either starts
+or ends at this point. So we have t timepoints, and at each time point we have to look at each task twice.
+This gives us a quadratic implementation, O = (t * n). It's really terrible.
+
+
