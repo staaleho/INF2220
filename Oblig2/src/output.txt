@@ -1,0 +1,722 @@
+Time 0: Build-foundation starts.
+Current staff: 2
+-
+Time 4: Build-walls starts.
+Time 4: Build-foundation finishes.
+Time 4: Make-floor starts.
+Current staff: 4
+-
+Time 6: Make-floor finishes.
+Current staff: 2
+-
+Time 8: Build-walls finishes.
+Time 8: Build-roofs starts.
+Current staff: 4
+-
+Time 14: Build-roofs finishes.
+Time 14: Put-on-wallpapers starts.
+Time 14: Put-on-tiles starts.
+Time 14: Put-carpet-floor starts.
+Current staff: 7
+-
+Time 15: Put-on-wallpapers finishes.
+Time 15: Put-on-tiles finishes.
+Current staff: 2
+-
+Time 18: Put-carpet-floor finishes.
+Time 18: Move-in starts.
+Current staff: 4
+-
+Time 22: Move-in finishes.
+Current staff: 0
+-
+* * * * *
+Earliest possible project completion is 22
+* * * * *
+-
+Task ID 1
+Name: Build-walls
+Time to complete 4
+Staff: 2
+Earliest start 4
+Latest start 4
+Task completes at 8
+Task is critical!
+The project is necessary for these tasks:
+2 Build-roofs
+3 Put-on-wallpapers
+- - -
+Task ID 2
+Name: Build-roofs
+Time to complete 6
+Staff: 4
+Earliest start 8
+Latest start 8
+Task completes at 14
+Task is critical!
+The project is necessary for these tasks:
+3 Put-on-wallpapers
+4 Put-on-tiles
+7 Put-carpet-floor
+- - -
+Task ID 3
+Name: Put-on-wallpapers
+Time to complete 1
+Staff: 2
+Earliest start 8
+Latest start 14
+Task completes at 15
+Task has slack 3.
+The project is necessary for these tasks:
+8 Move-in
+- - -
+Task ID 4
+Name: Put-on-tiles
+Time to complete 1
+Staff: 3
+Earliest start 14
+Latest start 14
+Task completes at 15
+Task is critical!
+- - -
+Task ID 5
+Name: Build-foundation
+Time to complete 4
+Staff: 2
+Earliest start 0
+Latest start 0
+Task completes at 4
+Task is critical!
+The project is necessary for these tasks:
+1 Build-walls
+6 Make-floor
+- - -
+Task ID 6
+Name: Make-floor
+Time to complete 2
+Staff: 2
+Earliest start 4
+Latest start 4
+Task completes at 6
+Task has slack 8.
+The project is necessary for these tasks:
+7 Put-carpet-floor
+- - -
+Task ID 7
+Name: Put-carpet-floor
+Time to complete 4
+Staff: 2
+Earliest start 6
+Latest start 14
+Task completes at 18
+Task is critical!
+The project is necessary for these tasks:
+8 Move-in
+- - -
+Task ID 8
+Name: Move-in
+Time to complete 4
+Staff: 4
+Earliest start 9
+Latest start 18
+Task completes at 22
+Task is critical!
+- - -
+Loop!
+Loop consists of
+Build-walls
+Build-roofs
+Put-on-wallpapers
+Make-floor
+Cycle found! Terminating program.
+Time 0: Setup-barrack starts.
+Current staff: 10
+-
+Time 3: Setup-barrack finishes.
+Time 3: Prepare-storage starts.
+Time 3: Rig-ramspace-reinforcing starts.
+Time 3: Build-tunnel starts.
+Time 3: Build-intersection starts.
+Time 3: Build-towerfoundation-1 starts.
+Time 3: Build-towerfoundation-2 starts.
+Current staff: 56
+-
+Time 4: Rig-ramspace-reinforcing finishes.
+Time 4: Make-armouring-tower-1 starts.
+Time 4: Make-armouring-tower-2 starts.
+Time 4: Make-armouring-arch starts.
+Current staff: 64
+-
+Time 5: Install-railing starts.
+Time 5: Prepare-storage finishes.
+Current staff: 70
+-
+Time 12: Install-railing finishes.
+Current staff: 60
+-
+Time 16: Make-armouring-arch finishes.
+Time 16: Encase-and-armour-arch starts.
+Current staff: 61
+-
+Time 28: Build-intersection finishes.
+Time 28: Clean-intersection starts.
+Current staff: 61
+-
+Time 29: Make-armouring-tower-2 finishes.
+Current staff: 57
+-
+Time 33: Build-tunnel finishes.
+Time 33: Clean-tunnel starts.
+Current staff: 57
+-
+Time 38: Build-towerfoundation-1 finishes.
+Current staff: 45
+-
+Time 44: Make-armouring-tower-1 finishes.
+Time 44: Encase-and-armour-tower-1 starts.
+Current staff: 46
+-
+Time 46: Encase-and-armour-arch finishes.
+Time 46: Cast-arch starts.
+Current staff: 48
+-
+Time 48: Clean-intersection finishes.
+Time 48: Build-towerfoundation-2 finishes.
+Time 48: Encase-and-armour-tower-2 starts.
+Current staff: 29
+-
+Time 51: Put-lane-tunnel-and-intersection starts.
+Time 51: Clean-tunnel finishes.
+Current staff: 24
+-
+Time 59: Encase-and-armour-tower-1 finishes.
+Time 59: Cast-tower-1 starts.
+Current staff: 26
+-
+Time 63: Install-ticketmachine starts.
+Time 63: Put-lane-tunnel-and-intersection finishes.
+Current staff: 29
+-
+Time 64: Install-ticketmachine finishes.
+Time 64: Encase-and-armour-tower-2 finishes.
+Time 64: Cast-tower-2 starts.
+Current staff: 21
+-
+Time 66: Cast-arch finishes.
+Current staff: 14
+-
+Time 119: Paint-tower-1-with-arch starts.
+Time 119: Cast-tower-1 finishes.
+Current staff: 13
+-
+Time 124: Paint-tower-2 starts.
+Time 124: Cast-tower-2 finishes.
+Time 124: Stretch-two-maincables starts.
+Current staff: 22
+-
+Time 134: Paint-tower-1-with-arch finishes.
+Current staff: 16
+-
+Time 136: Paint-tower-2 finishes.
+Current staff: 10
+-
+Time 149: Stretch-two-maincables finishes.
+Time 149: Build-truss-1-with-rods starts.
+Time 149: Build-truss-2-with-rods starts.
+Current staff: 20
+-
+Time 179: Build-truss-1-with-rods finishes.
+Current staff: 10
+-
+Time 186: Install-pavement starts.
+Time 186: Paint-trusses starts.
+Time 186: Paint-cables-and-rods starts.
+Time 186: Build-truss-2-with-rods finishes.
+Time 186: Cast-lane-on-truss starts.
+Current staff: 29
+-
+Time 204: Paint-cables-and-rods finishes.
+Current staff: 23
+-
+Time 206: Install-pavement finishes.
+Time 206: Cast-lane-on-truss finishes.
+Time 206: Polish-lane-on-arch starts.
+Current staff: 13
+-
+Time 213: Paint-trusses finishes.
+Current staff: 7
+-
+Time 218: Polish-lane-on-arch finishes.
+Current staff: 0
+-
+* * * * *
+Earliest possible project completion is 218
+* * * * *
+-
+Task ID 1
+Name: Install-pavement
+Time to complete 20
+Staff: 10
+Earliest start 179
+Latest start 186
+Task completes at 206
+Task is critical!
+- - -
+Task ID 2
+Name: Install-railing
+Time to complete 7
+Staff: 10
+Earliest start 5
+Latest start 5
+Task completes at 12
+Task is critical!
+- - -
+Task ID 3
+Name: Install-ticketmachine
+Time to complete 1
+Staff: 10
+Earliest start 60
+Latest start 63
+Task completes at 64
+Task is critical!
+- - -
+Task ID 4
+Name: Paint-tower-1-with-arch
+Time to complete 15
+Staff: 6
+Earliest start 119
+Latest start 119
+Task completes at 134
+Task is critical!
+- - -
+Task ID 5
+Name: Paint-tower-2
+Time to complete 12
+Staff: 6
+Earliest start 124
+Latest start 124
+Task completes at 136
+Task is critical!
+- - -
+Task ID 6
+Name: Paint-trusses
+Time to complete 27
+Staff: 6
+Earliest start 179
+Latest start 186
+Task completes at 213
+Task is critical!
+- - -
+Task ID 7
+Name: Paint-cables-and-rods
+Time to complete 18
+Staff: 6
+Earliest start 179
+Latest start 186
+Task completes at 204
+Task is critical!
+- - -
+Task ID 8
+Name: Put-lane-tunnel-and-intersection
+Time to complete 12
+Staff: 7
+Earliest start 48
+Latest start 51
+Task completes at 63
+Task is critical!
+The project is necessary for these tasks:
+3 Install-ticketmachine
+31 Polish-lane-on-arch
+- - -
+Task ID 9
+Name: Setup-barrack
+Time to complete 3
+Staff: 10
+Earliest start 0
+Latest start 0
+Task completes at 3
+Task is critical!
+The project is necessary for these tasks:
+10 Prepare-storage
+11 Rig-ramspace-reinforcing
+12 Build-tunnel
+14 Build-intersection
+16 Build-towerfoundation-1
+17 Build-towerfoundation-2
+- - -
+Task ID 10
+Name: Prepare-storage
+Time to complete 2
+Staff: 4
+Earliest start 3
+Latest start 3
+Task completes at 5
+Task is critical!
+The project is necessary for these tasks:
+2 Install-railing
+- - -
+Task ID 11
+Name: Rig-ramspace-reinforcing
+Time to complete 1
+Staff: 4
+Earliest start 3
+Latest start 3
+Task completes at 4
+Task is critical!
+The project is necessary for these tasks:
+18 Make-armouring-tower-1
+19 Make-armouring-tower-2
+20 Make-armouring-arch
+- - -
+Task ID 12
+Name: Build-tunnel
+Time to complete 30
+Staff: 12
+Earliest start 3
+Latest start 3
+Task completes at 33
+Task is critical!
+The project is necessary for these tasks:
+13 Clean-tunnel
+- - -
+Task ID 13
+Name: Clean-tunnel
+Time to complete 18
+Staff: 12
+Earliest start 33
+Latest start 33
+Task completes at 51
+Task is critical!
+The project is necessary for these tasks:
+8 Put-lane-tunnel-and-intersection
+- - -
+Task ID 14
+Name: Build-intersection
+Time to complete 25
+Staff: 12
+Earliest start 3
+Latest start 3
+Task completes at 28
+Task is critical!
+The project is necessary for these tasks:
+15 Clean-intersection
+- - -
+Task ID 15
+Name: Clean-intersection
+Time to complete 20
+Staff: 12
+Earliest start 28
+Latest start 28
+Task completes at 48
+Task has slack 3.
+The project is necessary for these tasks:
+8 Put-lane-tunnel-and-intersection
+- - -
+Task ID 16
+Name: Build-towerfoundation-1
+Time to complete 35
+Staff: 12
+Earliest start 3
+Latest start 3
+Task completes at 38
+Task has slack 6.
+The project is necessary for these tasks:
+21 Encase-and-armour-tower-1
+- - -
+Task ID 17
+Name: Build-towerfoundation-2
+Time to complete 45
+Staff: 12
+Earliest start 3
+Latest start 3
+Task completes at 48
+Task is critical!
+The project is necessary for these tasks:
+22 Encase-and-armour-tower-2
+- - -
+Task ID 18
+Name: Make-armouring-tower-1
+Time to complete 40
+Staff: 4
+Earliest start 4
+Latest start 4
+Task completes at 44
+Task is critical!
+The project is necessary for these tasks:
+21 Encase-and-armour-tower-1
+- - -
+Task ID 19
+Name: Make-armouring-tower-2
+Time to complete 25
+Staff: 4
+Earliest start 4
+Latest start 4
+Task completes at 29
+Task has slack 19.
+The project is necessary for these tasks:
+22 Encase-and-armour-tower-2
+- - -
+Task ID 20
+Name: Make-armouring-arch
+Time to complete 12
+Staff: 4
+Earliest start 4
+Latest start 4
+Task completes at 16
+Task is critical!
+The project is necessary for these tasks:
+23 Encase-and-armour-arch
+- - -
+Task ID 21
+Name: Encase-and-armour-tower-1
+Time to complete 15
+Staff: 5
+Earliest start 38
+Latest start 44
+Task completes at 59
+Task is critical!
+The project is necessary for these tasks:
+24 Cast-tower-1
+- - -
+Task ID 22
+Name: Encase-and-armour-tower-2
+Time to complete 16
+Staff: 5
+Earliest start 29
+Latest start 48
+Task completes at 64
+Task is critical!
+The project is necessary for these tasks:
+25 Cast-tower-2
+- - -
+Task ID 23
+Name: Encase-and-armour-arch
+Time to complete 30
+Staff: 5
+Earliest start 16
+Latest start 16
+Task completes at 46
+Task is critical!
+The project is necessary for these tasks:
+26 Cast-arch
+- - -
+Task ID 24
+Name: Cast-tower-1
+Time to complete 60
+Staff: 7
+Earliest start 53
+Latest start 59
+Task completes at 119
+Task is critical!
+The project is necessary for these tasks:
+4 Paint-tower-1-with-arch
+27 Stretch-two-maincables
+- - -
+Task ID 25
+Name: Cast-tower-2
+Time to complete 60
+Staff: 7
+Earliest start 64
+Latest start 64
+Task completes at 124
+Task is critical!
+The project is necessary for these tasks:
+5 Paint-tower-2
+27 Stretch-two-maincables
+- - -
+Task ID 26
+Name: Cast-arch
+Time to complete 20
+Staff: 7
+Earliest start 46
+Latest start 46
+Task completes at 66
+Task has slack 140.
+The project is necessary for these tasks:
+31 Polish-lane-on-arch
+- - -
+Task ID 27
+Name: Stretch-two-maincables
+Time to complete 25
+Staff: 10
+Earliest start 119
+Latest start 124
+Task completes at 149
+Task is critical!
+The project is necessary for these tasks:
+28 Build-truss-1-with-rods
+29 Build-truss-2-with-rods
+- - -
+Task ID 28
+Name: Build-truss-1-with-rods
+Time to complete 30
+Staff: 10
+Earliest start 149
+Latest start 149
+Task completes at 179
+Task has slack 7.
+The project is necessary for these tasks:
+1 Install-pavement
+6 Paint-trusses
+7 Paint-cables-and-rods
+30 Cast-lane-on-truss
+- - -
+Task ID 29
+Name: Build-truss-2-with-rods
+Time to complete 37
+Staff: 10
+Earliest start 149
+Latest start 149
+Task completes at 186
+Task is critical!
+The project is necessary for these tasks:
+1 Install-pavement
+6 Paint-trusses
+7 Paint-cables-and-rods
+30 Cast-lane-on-truss
+- - -
+Task ID 30
+Name: Cast-lane-on-truss
+Time to complete 20
+Staff: 7
+Earliest start 179
+Latest start 186
+Task completes at 206
+Task is critical!
+The project is necessary for these tasks:
+31 Polish-lane-on-arch
+- - -
+Task ID 31
+Name: Polish-lane-on-arch
+Time to complete 12
+Staff: 7
+Earliest start 60
+Latest start 206
+Task completes at 218
+Task is critical!
+- - -
+Time 0: 1 starts.
+Time 0: 2 starts.
+Current staff: 6
+-
+Time 3: 1 finishes.
+Current staff: 2
+-
+Time 5: 2 finishes.
+Time 5: 3 starts.
+Time 5: 4 starts.
+Current staff: 6
+-
+Time 6: 3 finishes.
+Time 6: 5 starts.
+Current staff: 7
+-
+Time 7: 4 finishes.
+Time 7: 6 starts.
+Current staff: 7
+-
+Time 10: 5 finishes.
+Current staff: 4
+-
+Time 15: 6 finishes.
+Time 15: 7 starts.
+Time 15: 8 starts.
+Current staff: 5
+-
+Time 16: 8 finishes.
+Current staff: 2
+-
+Time 18: 7 finishes.
+Current staff: 0
+-
+* * * * *
+Earliest possible project completion is 18
+* * * * *
+-
+Task ID 1
+Name: 1
+Time to complete 3
+Staff: 4
+Earliest start 0
+Latest start 0
+Task completes at 3
+Task has slack 2.
+The project is necessary for these tasks:
+3 3
+- - -
+Task ID 2
+Name: 2
+Time to complete 5
+Staff: 2
+Earliest start 0
+Latest start 0
+Task completes at 5
+Task is critical!
+The project is necessary for these tasks:
+3 3
+4 4
+- - -
+Task ID 3
+Name: 3
+Time to complete 1
+Staff: 2
+Earliest start 3
+Latest start 5
+Task completes at 6
+Task is critical!
+The project is necessary for these tasks:
+5 5
+6 6
+- - -
+Task ID 4
+Name: 4
+Time to complete 2
+Staff: 4
+Earliest start 5
+Latest start 5
+Task completes at 7
+Task is critical!
+The project is necessary for these tasks:
+6 6
+- - -
+Task ID 5
+Name: 5
+Time to complete 4
+Staff: 3
+Earliest start 6
+Latest start 6
+Task completes at 10
+Task has slack 5.
+The project is necessary for these tasks:
+7 7
+- - -
+Task ID 6
+Name: 6
+Time to complete 8
+Staff: 4
+Earliest start 6
+Latest start 7
+Task completes at 15
+Task is critical!
+The project is necessary for these tasks:
+7 7
+8 8
+- - -
+Task ID 7
+Name: 7
+Time to complete 3
+Staff: 2
+Earliest start 10
+Latest start 15
+Task completes at 18
+Task is critical!
+- - -
+Task ID 8
+Name: 8
+Time to complete 1
+Staff: 3
+Earliest start 15
+Latest start 15
+Task completes at 16
+Task is critical!
+- - -

@@ -1,0 +1,45 @@
+Statistics for the current tree:
+1: The tree has a depth of 37
+2: Per level, there are the follow number of nodes:
+Level 0 1
+Level 1 2
+Level 2 4
+Level 3 8
+Level 4 16
+Level 5 32
+Level 6 64
+Level 7 121
+Level 8 218
+Level 9 383
+Level 10 628
+Level 11 990
+Level 12 1513
+Level 13 2208
+Level 14 2949
+Level 15 3889
+Level 16 4772
+Level 17 5670
+Level 18 6251
+Level 19 6688
+Level 20 6690
+Level 21 6448
+Level 22 5890
+Level 23 5101
+Level 24 4244
+Level 25 3254
+Level 26 2395
+Level 27 1789
+Level 28 1177
+Level 29 705
+Level 30 429
+Level 31 236
+Level 32 138
+Level 33 60
+Level 34 25
+Level 35 9
+Level 36 3
+3: The average depth of a BST is O(log(n)), in this tree that is 16.194602975157967.
+This BST in particular has an average node depth of 19.650786666666665.
+4: The first word is abactinally,
+ and the last is darndests.
+This adds up to 75000 nodes.

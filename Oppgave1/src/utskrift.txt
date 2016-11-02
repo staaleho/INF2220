@@ -1,0 +1,145 @@
+Script started on Wed Oct  5 08:26:07 2016
+[?1034hbash-3.2$ java Main
+Root made
+Before we begin, lets look at the tree!
+Statistics for the current tree:
+1: The tree has a depth of 37
+2: Per level, there are the follow number of nodes:
+Level 0 1
+Level 1 2
+Level 2 4
+Level 3 8
+Level 4 16
+Level 5 32
+Level 6 64
+Level 7 121
+Level 8 218
+Level 9 383
+Level 10 628
+Level 11 990
+Level 12 1513
+Level 13 2208
+Level 14 2949
+Level 15 3889
+Level 16 4772
+Level 17 5670
+Level 18 6251
+Level 19 6688
+Level 20 6690
+Level 21 6448
+Level 22 5890
+Level 23 5101
+Level 24 4244
+Level 25 3254
+Level 26 2395
+Level 27 1789
+Level 28 1177
+Level 29 705
+Level 30 429
+Level 31 236
+Level 32 138
+Level 33 60
+Level 34 25
+Level 35 9
+Level 36 3
+3: The average depth of a BST is O(log(n)), in this tree that is 16.194602975157967.
+This BST in particular has an average node depth of 19.650786666666665.
+4: The first word is abactinally,
+ and the last is darndests.
+This adds up to 75000 nodes.
+Looking for busybody...
+Busybody found!
+Deleting busybody
+Looking for busybody...
+Busybody not found!
+Lets hope the tree is still working!
+Statistics for the current tree:
+1: The tree has a depth of 37
+2: Per level, there are the follow number of nodes:
+Level 0 1
+Level 1 2
+Level 2 4
+Level 3 8
+Level 4 16
+Level 5 32
+Level 6 64
+Level 7 121
+Level 8 218
+Level 9 383
+Level 10 628
+Level 11 990
+Level 12 1513
+Level 13 2208
+Level 14 2949
+Level 15 3889
+Level 16 4772
+Level 17 5671
+Level 18 6251
+Level 19 6689
+Level 20 6692
+Level 21 6449
+Level 22 5884
+Level 23 5101
+Level 24 4244
+Level 25 3254
+Level 26 2395
+Level 27 1789
+Level 28 1177
+Level 29 705
+Level 30 429
+Level 31 236
+Level 32 138
+Level 33 60
+Level 34 25
+Level 35 9
+Level 36 3
+3: The average depth of a BST is O(log(n)), in this tree that is 16.19458373909585.
+This BST in particular has an average node depth of 19.650582007760104.
+4: The first word is abactinally,
+ and the last is darndests.
+This adds up to 74999 nodes.
+Welcome to spellcheck! Enter word: ('q' to exit)
+achiev
+achiev not found! Trying spellcheck:
+Making list
+It took 1 milliseconds to generate alternatives.
+There are 336 variants of the word to try.
+Found achive instead of achiev
+Found achier instead of achiev
+Found achieve instead of achiev
+It took 1 ms to search for alternatives.
+Enter word: ('q' to exit)
+achiese
+achiese not found! Trying spellcheck:
+Making list
+It took 1 milliseconds to generate alternatives.
+There are 388 variants of the word to try.
+Found achieve instead of achiese
+Found achiest instead of achiese
+Found achinese instead of achiese
+It took 0 ms to search for alternatives.
+Enter word: ('q' to exit)
+achievee
+achievee not found! Trying spellcheck:
+Making list
+It took 0 milliseconds to generate alternatives.
+There are 438 variants of the word to try.
+Found achieved instead of achievee
+Found achiever instead of achievee
+Found achieves instead of achievee
+Found achieve instead of achievee
+It took 1 ms to search for alternatives.
+Enter word: ('q' to exit)
+ahcieve
+ahcieve not found! Trying spellcheck:
+Making list
+It took 0 milliseconds to generate alternatives.
+There are 388 variants of the word to try.
+Found achieve instead of ahcieve
+It took 0 ms to search for alternatives.
+Enter word: ('q' to exit)
+q
+bash-3.2$ exit
+exit
+
+Script done on Wed Oct  5 08:27:10 2016
