@@ -1,0 +1,15 @@
+Cases are on pattern
+Needle
+Haystack
+---
+LUCKYDUCKCLUCK
+MUCKYDUXCLUCKDUCKYCLUCKYDUCKMUCKLUCKMCLUCKYDUCKCLUCKDUXCLUCKX
+---
+c_g
+cogwrgaccag
+---
+z_r_a
+cozwrcavu
+---
+c__c
+cogcagcigcug
